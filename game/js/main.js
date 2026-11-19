@@ -165,6 +165,11 @@ function hurtPlayer(amount) {
 }
 
 function toast(text, color = '#ffffff', seconds = 3.2) {
+  const existing = toasts.find((t) => t.text === text);
+  if (existing) {
+    existing.ttl = seconds;
+    return;
+  }
   toasts.push({ text, color, ttl: seconds });
   if (toasts.length > 4) toasts.shift();
 }

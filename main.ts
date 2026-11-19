@@ -28,13 +28,12 @@ if (existsSync(join(here, 'screenshots'))) {
 // The sealed scorer's own caps: only text_max_bytes shapes the dossier's bytes; the
 // rest refuse here what the scorer would refuse there (over 4 screenshots or one
 // over 256 KiB; over 993 files in game/ or 48 MiB of game files in all).
-writeFileSync(
-  join(out, 'dossier.json'),
-  buildDossier(out, {
-    text_max_bytes: 163840,
-    screenshots: { max: 4, max_bytes: 262144 },
-    game_max_files: 993,
-    game_max_bytes: 50331648,
-    game_path_max_bytes: 1000,
-  }),
-);
+const dossier = buildDossier(out, {
+  text_max_bytes: 163840,
+  screenshots: { max: 4, max_bytes: 262144 },
+  game_max_files: 993,
+  game_max_bytes: 50331648,
+  game_path_max_bytes: 1000,
+});
+writeFileSync(join(out, 'dossier.json'), dossier);
+console.log(`Emberfall Heat handed in: game/ and screenshots/ copied to ${out}, dossier.json written (${dossier.length} bytes).`);
