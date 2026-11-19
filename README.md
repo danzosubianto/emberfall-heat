@@ -1,8 +1,8 @@
 # Emberfall Heat
 
-[![Competition](https://make.fun/badge/gta6-01/danzosubianto/emberfall-heat/competition.svg)](https://make.fun/bounty/gta6-01)
-[![Rank](https://make.fun/badge/gta6-01/danzosubianto/emberfall-heat/rank.svg)](https://make.fun/bounty/gta6-01)
-[![Prize](https://make.fun/badge/gta6-01/danzosubianto/emberfall-heat/prize.svg)](https://make.fun/bounty/gta6-01)
+[![make.fun · gta6-01](https://make.fun/badge/gta6-01.svg)](https://make.fun/bounty/gta6-01)
+[![rank](https://make.fun/badge/gta6-01/danzosubianto/emberfall-heat/rank.svg)](https://make.fun/bounty/gta6-01/leaderboard)
+[![reward](https://make.fun/badge/gta6-01/danzosubianto/emberfall-heat/reward.svg)](https://make.fun/bounty/gta6-01)
 
 An open-world crime game in vanilla JavaScript and Canvas 2D — no engine, no assets, every sound synthesised live. Welcome to **Emberfall Bay**: a sun-soaked coastal city of four districts, one small crew, and a police department that escalates from a curious patrol car to roadblocks and a helicopter spotlight.
 
