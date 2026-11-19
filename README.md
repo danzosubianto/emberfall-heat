@@ -18,6 +18,15 @@ You are **Rook**, the new wheelman of the Ashpit crew. Fixer **Mara Voss** has w
 - **Progression that sticks** — cash, respect and titles (Nobody → Street Name → Known Wheelman → Crew Captain → Emberfall Legend), mission select with replays, a garage car, and a full career saved in `localStorage`.
 - **Feel** — a full day/night cycle (lit windows, lamp pools, headlight cones after dark), particles, screen shake, a minimap with live police blips, a full city map, dialogue, and a WebAudio soundtrack of engine, siren and ambient pads — zero audio files.
 
+## Screenshots
+
+Four captures from the running game — no mockups, this is the real city at work:
+
+- `screenshots/1-cover.jpg` — the title screen over the living city of Emberfall Bay
+- `screenshots/2-chase.jpg` — a five-star chase: helicopter spotlight, a roadblock, the minimap and the mission objective
+- `screenshots/3-mission.jpg` — a night mission with dialogue, a beacon and lit windows
+- `screenshots/4-map.jpg` — the full city map with the four districts and landmarks
+
 ## Controls
 
 | Key | Action |
