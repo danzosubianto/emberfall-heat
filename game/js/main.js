@@ -56,6 +56,7 @@ let missionSelection = 0;
 let helpFrom = 'title';
 let dialogueQueue = [];
 let dialogueAfter = null;
+let lastCrashHurtAt = 0;
 let toasts = [];
 let damageFlash = 0;
 let timeSinceDamage = 99;
@@ -99,8 +100,9 @@ const world = {
       }
     }
     if (witnessed) {
+      const before = wanted.level;
       wanted.addCrime(kind);
-      toast('Witnessed!', '#ff8a7a');
+      if (wanted.level > before) toast('Witnessed — the heat is rising!', '#ff8a7a');
     }
   },
   onCarCrash(car, severity, x, y) {
@@ -108,7 +110,13 @@ const world = {
     shake.add(severity * 0.5);
     fx.burstSparks(x, y, severity);
     if (car.driver === 'cop') world.onCrime('cop-hit', x, y);
-    if (car === playerCar && severity > 0.55) hurtPlayer(severity * 5);
+    // The car takes the beating, not the driver: only a truly big hit gets
+    // through to the player's health, and never twice in the same moment.
+    const now = performance.now();
+    if (car === playerCar && severity > 0.8 && now - lastCrashHurtAt > 650) {
+      lastCrashHurtAt = now;
+      hurtPlayer(severity * 3.5);
+    }
   },
   onTrafficHit(car, byCar) {
     // The driver bails out and runs; the car is yours if you want it.
@@ -132,8 +140,8 @@ const world = {
     sound.gunshot();
     damageFlash = Math.max(damageFlash, 0.35);
     if (playerCar) {
-      playerCar.health -= 2.2;
-      if (Math.random() < 0.4) hurtPlayer(2);
+      playerCar.health -= 1.5;
+      if (Math.random() < 0.3) hurtPlayer(1.2);
     } else {
       hurtPlayer(4 + Math.random() * 3);
     }
@@ -959,16 +967,20 @@ function setupShot(name) {
   } else if (name === 'chase') {
     state = 'play';
     day.minutes = 16 * 60 + 40;
-    const car = makeCar('vantara', 2560, 2120, 0, rng);
+    const car = makeCar('vantara', 2240, 2120, 0, rng);
     car.color = '#c22e3e';
     car.driver = 'player';
     car.vx = 305;
+    // The scene car is armoured for the camera: an unpiloted car driving
+    // into a roadblock still has to be alive when the shutter falls.
+    car.maxHealth = 520;
+    car.health = 520;
     cars.push(car);
     playerCar = car;
     player.x = car.x;
     player.y = car.y;
     wanted.forceLevel(4);
-    const copSpots = [[2280, 2085], [2200, 2155], [2400, 2185]];
+    const copSpots = [[1960, 2085], [1880, 2155], [2080, 2185]];
     for (const [x, y] of copSpots) {
       const cop = makeCar('interceptor', x, y, 0, rng);
       cop.driver = 'cop';

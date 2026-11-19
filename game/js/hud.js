@@ -387,7 +387,8 @@ export function drawMapScreen(ctx, world) {
     ctx.arc(ox + lm.x * sx, oy + lm.y * sy, 4, 0, Math.PI * 2);
     ctx.fill();
     ctx.fillStyle = 'rgba(255,255,255,0.8)';
-    ctx.fillText(lm.name.replace(/ \(.*\)/, ''), ox + lm.x * sx, oy + lm.y * sy - 10);
+    const label = key === 'hotel' ? 'Solenne Grand' : lm.name.replace(/ \(.*\)/, '');
+    ctx.fillText(label, ox + lm.x * sx, oy + lm.y * sy - 10);
   }
   const pos = world.playerPos;
   ctx.fillStyle = '#ffffff';
@@ -410,7 +411,7 @@ export function drawMapScreen(ctx, world) {
   ctx.fillText('EMBERFALL BAY', W / 2, 44);
   ctx.font = `600 14px ${FONT}`;
   ctx.fillStyle = 'rgba(255,255,255,0.7)';
-  ctx.fillText('M or Esc — back to the street · green square: your loft · gold square: Ember Customs garage', W / 2, H - 20);
+  ctx.fillText('M or Esc — back to the street · orange dots: landmarks · white ring: you · gold dot: your objective', W / 2, H - 20);
   void districtAt;
   void DISTRICT_INFO;
 }

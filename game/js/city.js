@@ -437,7 +437,7 @@ export function drawNightDetails(ctx, city, view, lampGlow) {
     const stepY = b.h / b.windowsDown;
     for (let i = 0; i < b.windowsAcross; i++) {
       for (let j = 0; j < b.windowsDown; j++) {
-        if (!rng.chance(0.34)) continue;
+        if (!rng.chance(0.21)) continue;
         ctx.fillStyle = rng.chance(0.8) ? 'rgba(255,196,92,0.85)' : 'rgba(160,220,255,0.8)';
         ctx.fillRect(b.x + 5 + i * stepX, b.y + 6 + j * stepY, Math.min(9, stepX - 8), Math.min(7, stepY - 8));
       }
@@ -449,12 +449,12 @@ export function drawNightDetails(ctx, city, view, lampGlow) {
     for (const p of city.props) {
       if (p.kind !== 'lamp') continue;
       if (p.x < view.x - 40 || p.x > view.x + view.w + 40 || p.y < view.y - 40 || p.y > view.y + view.h + 40) continue;
-      const grad = ctx.createRadialGradient(p.x, p.y, 2, p.x, p.y, 34);
-      grad.addColorStop(0, 'rgba(255,190,90,0.20)');
+      const grad = ctx.createRadialGradient(p.x, p.y, 2, p.x, p.y, 27);
+      grad.addColorStop(0, 'rgba(255,190,90,0.10)');
       grad.addColorStop(1, 'rgba(255,190,90,0)');
       ctx.fillStyle = grad;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, 34, 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, 27, 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.restore();
